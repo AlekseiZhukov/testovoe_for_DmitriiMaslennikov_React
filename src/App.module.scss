@@ -1,3 +1,26 @@
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: url('./assets/fonts/Roboto-Regular.ttf');
+}
+body {
+  font-family: 'Roboto-Regular', sans-serif;
+  box-sizing: border-box;
+}
+
 .wrapApp {
-  height: 708px;
+  position: relative;
+  height: 778px;
+  padding: 22px 0 0 24px;
+  overflow-x: hidden;
+  &::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 715px;
+    right: -19px;
+    top: 80px;
+    background: #FFFFFF;
+    box-shadow: -4px 2px 8px rgba(16, 31, 43, 0.1);
+    z-index: 10;
+  }
 }

@@ -1,0 +1,29 @@
+@import '../../buttonMenuTasks';
+.root {
+  position: relative;
+  width: 389px;
+  height: 661px;
+  border-width: 0 1px 1px 1px;
+  border-style: solid;
+  border-color: rgba(38, 40, 66, 0.12);
+  border-radius: 0 0 0 10px;
+
+}
+.title {
+  width: 370px;
+  height: 48px;
+  h1 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    color: #6D6E85;
+  }
+  padding: 0 0 0 20px;
+  left: 24px;
+  top: 68px;
+  background: #F7F8FC;
+  border: 1px solid rgba(38, 40, 66, 0.12);
+  border-radius: 10px 0 0 0;
+}
+
