@@ -1,21 +1,10 @@
-.root {
-  width: 101px;
-  height: 40px;
-  background: #FFF;
-  border: 1px solid rgba(38, 40, 66, 0.12);
-  border-radius: 10px;
-  position: relative;
-  font-family: 'Roboto-Regular', sans-serif;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 18px;
-  padding: 0 16px 0 44px;
-  svg {
-    height: 17px;
-    width: auto;
+@import "../../progressBars";
 
-    position: absolute;
-    left:20px;
-    top:11px;
-  }
+.root {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding-top: 90px;
 }

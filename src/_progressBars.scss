@@ -1,0 +1,41 @@
+.wrapProgress {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+
+  span {
+    font-size: 14px;
+  }
+}
+
+.progressBar0,
+.progressBar1,
+.progressBar2,
+.progressBar3,
+.progressBar4,
+.progressBar5 {
+  height: 24px;
+  border: 1px solid #497CF6;
+  border-radius: 4px;
+  margin-right: 8px;
+  background: #E2EBFF;
+}
+
+.progressBar1 {
+  background: #FFF2E0;
+  border: 1px solid #FFA530;
+}
+
+.progressBar2,
+.progressBar3 {
+  background: #CFF0D6;
+  border: 1px solid #2DB77B;
+}
+
+.progressBar4,
+.progressBar5 {
+  background: #FFF2E0;
+  border: 1px solid #FFA530;
+}

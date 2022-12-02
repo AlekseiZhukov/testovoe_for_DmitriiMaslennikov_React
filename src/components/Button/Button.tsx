@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Button.module.scss'
-import   {ReactComponent as Vector} from '../../assets/img/Vector.svg'
+import {ReactComponent as Vector} from '../../assets/img/Vector.svg'
 
 interface ButtonProps {
     buttonName?: string

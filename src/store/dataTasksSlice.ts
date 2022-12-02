@@ -1,8 +1,8 @@
-// @ts-ignore
 import {createAsyncThunk, createSlice, SerializedError} from "@reduxjs/toolkit";
 import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
 import {RootState} from "./index";
-
+import {expandData, hiddenTasks} from "../helpers";
+import {Duration} from "luxon";
 
 export interface Chart {
     id: number
@@ -10,10 +10,14 @@ export interface Chart {
     period_start: string
     period_end: string
     sub: Array<Chart>
+    hidden?: boolean
+    floor?: number
+    intervalStartProgressBar?: number
+    lengthProgressBar?: number
 }
 
-interface DataTasksState {
-    project:string
+export interface DataTasksState {
+    project: string
     period: string
     chart: Chart
 }
@@ -26,15 +30,20 @@ interface TasksState {
     error: errorType
     startDay: number
     finishDay: number
+    extendData: Chart | null
 }
 
-const initialState:TasksState = {
+const initialState: TasksState = {
     isLoading: false,
     data: null,
     error: '',
     startDay: 0,
-    finishDay: 0
+    finishDay: 0,
+    extendData: null
+
 }
+
+const durDay = Duration.fromObject({hours: 24}).as('seconds')
 
 export const fetchDataTasks = createAsyncThunk(
     'data/requestTasks',
@@ -53,6 +62,7 @@ export const fetchDataTasks = createAsyncThunk(
     }
 )
 
+
 const dataTasksSlice = createSlice({
     name: 'dataTasksState',
     initialState,
@@ -63,31 +73,58 @@ const dataTasksSlice = createSlice({
         setFinishDay: (state, action) => {
             state.finishDay = action.payload
         },
+        setExpandData: (state, action) => {
 
+            if (state.data) {
+                const newDataChart = expandData(state.data.chart, 0, action.payload, durDay)
+                if (newDataChart) {
+                    state.extendData = newDataChart
+                }
+            }
+        },
+        setHiddenTask: (state, action) => {
 
+            if (state.extendData) {
+                const newDataChart = hiddenTasks(state.extendData, action.payload)
+                if (newDataChart) {
+                    state.extendData = newDataChart
+                }
+            }
+        },
+        setHiddenAllTasks: (state) => {
+            if (state.extendData) {
+                const newDataChart = state.extendData
+                newDataChart.hidden = !state.extendData.hidden
+                if (newDataChart) {
+                    state.extendData = newDataChart
+                }
+            }
+        }
     },
+
     extraReducers: (builder) => {
         builder.addCase(fetchDataTasks.pending, (state) => {
             state.isLoading = true
         })
-            builder.addCase(fetchDataTasks.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.data = action.payload;
-                state.error = "";
+        builder.addCase(fetchDataTasks.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.data = action.payload;
+            state.error = "";
         })
-            builder.addCase(fetchDataTasks.rejected, (state, action) => {
-                state.isLoading = false;
-                state.error = action.payload;
+        builder.addCase(fetchDataTasks.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.payload;
         })
     }
 });
 
 export const dataTasksLoadingSelector = (state: RootState) => state.dataTasks.isLoading;
 export const dataTasksFulfilledSelector = (state: RootState) => state.dataTasks.data;
+export const extendDataSelector = (state: RootState) => state.dataTasks.extendData;
 export const dataTasksErrorSelector = (state: RootState) => state.dataTasks.error;
 export const startDaySelector = (state: RootState) => state.dataTasks.startDay;
 export const finishDaySelector = (state: RootState) => state.dataTasks.finishDay;
 
-export const {setStartDay, setFinishDay} = dataTasksSlice.actions;
+export const {setStartDay, setFinishDay, setExpandData, setHiddenTask, setHiddenAllTasks} = dataTasksSlice.actions;
 
 export default dataTasksSlice.reducer

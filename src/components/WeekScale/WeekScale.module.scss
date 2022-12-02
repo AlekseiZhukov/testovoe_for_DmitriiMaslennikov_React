@@ -8,13 +8,15 @@
 .weeks {
   display: flex;
   flex-flow: row nowrap;
+
   div {
     position: relative;
-   height: 24px;
+    height: 24px;
     width: 154px;
     background: #F7F8FC;
     outline: 1px solid rgba(38, 40, 66, 0.12);
-    outline-offset:-1px;
+    outline-offset: -1px;
+
     p {
       font-size: 12px;
       position: absolute;
@@ -29,6 +31,7 @@
 .days {
   display: flex;
   flex-flow: row nowrap;
+
   div {
     position: relative;
     width: 22px;
@@ -36,24 +39,28 @@
     text-align: center;
     background: #F7F8FC;
     outline: 1px solid rgba(38, 40, 66, 0.12);
-    outline-offset:-1px;
+    outline-offset: -1px;
     display: flex;
     align-items: center;
     justify-content: center;
+
     &:nth-child(7n-1) {
       color: #A9A9B8;
     }
+
     &:nth-child(7n) {
       color: #A9A9B8;
     }
+
     p {
       font-size: 12px;
       position: absolute;
-      padding: 0 ;
+      padding: 0;
       margin: 0;
     }
   }
 }
+
 .greed {
 
   display: flex;
@@ -63,7 +70,7 @@
     width: 22px;
     height: 663px;
     outline: 1px solid rgba(38, 40, 66, 0.12);
-    outline-offset:-1px;
+    outline-offset: -1px;
   }
 
 }

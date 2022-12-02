@@ -1,11 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit";
+import {configureStore} from "@reduxjs/toolkit";
 import dataTasksSlice from './dataTasksSlice'
-
-
 
 const store = configureStore({
     reducer: {
-
         dataTasks: dataTasksSlice,
     },
 

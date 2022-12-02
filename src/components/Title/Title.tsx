@@ -8,9 +8,9 @@ interface TitleProps {
     children?: ReactNode
 }
 
-const Title:React.FC<TitleProps> = ({className, title, children}) => {
+const Title: React.FC<TitleProps> = ({className, title, children}) => {
     return (
-        <div className={cn( s.root, className)}>
+        <div className={cn(s.root, className)}>
             <h1>{title}</h1>
             {children}
         </div>
